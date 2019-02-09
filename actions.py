@@ -30,14 +30,14 @@ def pick_store():
     """
     print_stores()
     my_store = input("Pick a store by typing its name. Or type 'checkout' to pay your bills.")
-    while my_store.lower() != 'checkout':
-        if get_store(my_store):
-            #my_store.pick_products()
-            return get_store(my_store)
-        else: 
-          print("Invalid! Please try again..")
-        break
-    pick_store()
+    if my_store =='checkout':
+        #my_store.pick_products()
+        return 'checkout'
+
+    elif get_store(my_store):
+        return get_store(my_store)
+    else:
+        print("We don't have a store with that name!")
 
 def pick_products(cart, picked_store):
     """
@@ -63,6 +63,8 @@ def shop():
     #pick_store()
     while store != 'checkout':
         pick_products(cart, store)
+        store = pick_store()
+            
     cart.checkout()
 
 def thank_you():
